@@ -57551,7 +57551,7 @@ var PointCloud2 = /*@__PURE__*/(function (superclass) {
     this.rosTopic = new ROSLIB.Topic({
       ros : this.ros,
       name : this.topicName,
-      messageType : 'sensor_msgs/msg/PointCloud2',
+      messageType : 'sensor_msgs/PointCloud2',
       throttle_rate : this.throttle_rate,
       queue_length : 1,
       compression: this.compression
