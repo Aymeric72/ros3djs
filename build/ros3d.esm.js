@@ -57559,9 +57559,10 @@ var PointCloud2 = /*@__PURE__*/(function (superclass) {
   };
   PointCloud2.prototype.processMessage = function processMessage (msg){
 	console.warn("PASSAGE POINTCLOUD MSG", msg)
+	/*
     if(!this.points.setup(msg.header.frame_id, msg.point_step, msg.fields)) {
         return;
-    }
+    }*/
 
     var n, pointRatio = this.points.pointRatio;
     var bufSz = this.max_pts * msg.point_step;
