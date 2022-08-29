@@ -55239,7 +55239,7 @@ var SceneNode = /*@__PURE__*/(function (superclass) {
     superclass.call(this);
     options = options || {};
     var that = this;
-    this.tfClient = options.tfClient;
+    //this.tfClient = options.tfClient;
     this.frameID = options.frameID;
     var object = options.object;
     this.pose = options.pose || new ROSLIB.Pose();
@@ -55267,7 +55267,7 @@ var SceneNode = /*@__PURE__*/(function (superclass) {
     };
 
     // listen for TF updates
-    this.tfClient.subscribe(this.frameID, this.tfUpdate);
+    //this.tfClient.subscribe(this.frameID, this.tfUpdate);
   }
 
   if ( superclass ) SceneNode.__proto__ = superclass;
@@ -55285,7 +55285,7 @@ var SceneNode = /*@__PURE__*/(function (superclass) {
     this.updateMatrixWorld(true);
   };
   SceneNode.prototype.unsubscribeTf = function unsubscribeTf () {
-    this.tfClient.unsubscribe(this.frameID, this.tfUpdate);
+    //this.tfClient.unsubscribe(this.frameID, this.tfUpdate);
   };
 
   return SceneNode;
@@ -57231,7 +57231,7 @@ var Points = /*@__PURE__*/(function (superclass) {
   function Points(options) {
     superclass.call(this);
     options = options || {};
-    this.tfClient = options.tfClient;
+    //this.tfClient = options.tfClient;
     this.rootObject = options.rootObject || new THREE.Object3D();
     this.max_pts = options.max_pts || 10000;
     this.pointRatio = options.pointRatio || 1;
@@ -57306,14 +57306,13 @@ var Points = /*@__PURE__*/(function (superclass) {
 		  
           this.sn = new SceneNode({
               frameID : frame,
-              tfClient : this.tfClient,
+              //tfClient : this.tfClient,
               object : this.object
           });
 
           this.rootObject.add(this.sn);
       }
 	  
-		console.warn("PASSAGE POINT RETURN CLASS")
       return (this.messageCount++ % this.messageRatio) === 0;
   };
   Points.prototype.update = function update (n)
