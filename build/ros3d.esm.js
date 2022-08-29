@@ -57545,13 +57545,13 @@ var PointCloud2 = /*@__PURE__*/(function (superclass) {
   };
   PointCloud2.prototype.subscribe = function subscribe (){
     this.unsubscribe();
-	console.warn("PASSAGE POINTCLOUD SUBSCRIBE")
+	console.warn("PASSAGE POINTCLOUD SUBSCRIBE", this.ros, this.topicName)
 
     // subscribe to the topic
     this.rosTopic = new ROSLIB.Topic({
       ros : this.ros,
       name : this.topicName,
-      messageType : 'sensor_msgs/PointCloud2',
+      messageType : 'sensor_msgs/msg/PointCloud2',
       throttle_rate : this.throttle_rate,
       queue_length : 1,
       compression: this.compression
@@ -57559,7 +57559,7 @@ var PointCloud2 = /*@__PURE__*/(function (superclass) {
     this.rosTopic.subscribe(this.processMessage.bind(this));
   };
   PointCloud2.prototype.processMessage = function processMessage (msg){
-	console.warn("PASSAGE POINTCLOUD MSG")
+	console.warn("PASSAGE POINTCLOUD MSG", msg)
     if(!this.points.setup(msg.header.frame_id, msg.point_step, msg.fields)) {
         return;
     }
