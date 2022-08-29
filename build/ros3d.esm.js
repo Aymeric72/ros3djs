@@ -55234,6 +55234,7 @@ InteractiveMarkerClient.prototype.eraseIntMarker = function eraseIntMarker (intM
  */
 
 var SceneNode = /*@__PURE__*/(function (superclass) {
+	console.warn("PASSAGE SCENENODE CLASS")
   function SceneNode(options) {
     superclass.call(this);
     options = options || {};
@@ -55244,7 +55245,7 @@ var SceneNode = /*@__PURE__*/(function (superclass) {
     this.pose = options.pose || new ROSLIB.Pose();
 
     // Do not render this object until we receive a TF update
-    this.visible = false;
+    this.visible = true; //TODO  this.visible = false;
 
     // add the model
     this.add(object);
@@ -56877,7 +56878,7 @@ var Point = /*@__PURE__*/(function (superclass) {
   };
   Point.prototype.subscribe = function subscribe (){
     this.unsubscribe();
-
+	console.warn("PASSAGE POINT SUBSCRIBE")
     // subscribe to the topic
     this.rosTopic = new ROSLIB.Topic({
         ros : this.ros,
@@ -56888,6 +56889,7 @@ var Point = /*@__PURE__*/(function (superclass) {
     this.rosTopic.subscribe(this.processMessage.bind(this));
   };
   Point.prototype.processMessage = function processMessage (message){
+	console.warn("PASSAGE POINT MSG")
     if(this.sn!==null){
         this.sn.unsubscribeTf();
         this.rootObject.remove(this.sn);
@@ -57225,6 +57227,7 @@ var PoseWithCovariance = /*@__PURE__*/(function (superclass) {
  */
 
 var Points = /*@__PURE__*/(function (superclass) {
+	console.warn("PASSAGE POINT CLASS")
   function Points(options) {
     superclass.call(this);
     options = options || {};
@@ -57300,7 +57303,7 @@ var Points = /*@__PURE__*/(function (superclass) {
           }
 
           this.object = new THREE.Points( this.geom, this.material );
-
+		  
           this.sn = new SceneNode({
               frameID : frame,
               tfClient : this.tfClient,
@@ -57309,6 +57312,8 @@ var Points = /*@__PURE__*/(function (superclass) {
 
           this.rootObject.add(this.sn);
       }
+	  
+		console.warn("PASSAGE POINT RETURN CLASS")
       return (this.messageCount++ % this.messageRatio) === 0;
   };
   Points.prototype.update = function update (n)
@@ -57514,6 +57519,7 @@ for(var i=0;i<64;i++){decode64.e[decode64.S.charAt(i)]=i;}
 
 
 var PointCloud2 = /*@__PURE__*/(function (superclass) {
+	console.warn("PASSAGE POINTCLOUD CLASS")
   function PointCloud2(options) {
     superclass.call(this);
     options = options || {};
@@ -57539,6 +57545,7 @@ var PointCloud2 = /*@__PURE__*/(function (superclass) {
   };
   PointCloud2.prototype.subscribe = function subscribe (){
     this.unsubscribe();
+	console.warn("PASSAGE POINTCLOUD SUBSCRIBE")
 
     // subscribe to the topic
     this.rosTopic = new ROSLIB.Topic({
@@ -57552,6 +57559,7 @@ var PointCloud2 = /*@__PURE__*/(function (superclass) {
     this.rosTopic.subscribe(this.processMessage.bind(this));
   };
   PointCloud2.prototype.processMessage = function processMessage (msg){
+	console.warn("PASSAGE POINTCLOUD MSG")
     if(!this.points.setup(msg.header.frame_id, msg.point_step, msg.fields)) {
         return;
     }
@@ -57591,7 +57599,8 @@ var PointCloud2 = /*@__PURE__*/(function (superclass) {
     }
     this.points.update(n);
   };
-
+  
+	console.warn("PASSAGE POINTCLOUD RETURN CLASS")
   return PointCloud2;
 }(THREE.Object3D));
 
@@ -57949,7 +57958,7 @@ var MouseHandler = /*@__PURE__*/(function (superclass) {
     // add event listeners for the associated mouse events
     eventNames.forEach(function(eventName) {
       this.listeners[eventName] = this.processDomEvent.bind(this);
-      this.renderer.domElement.addEventListener(eventName, this.listeners[eventName], false);
+      this.renderer.domElement.addEventListener(eventName, this.listeners[eventName], {passive: false});
     }, this);
   }
 
