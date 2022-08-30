@@ -55234,7 +55234,6 @@ InteractiveMarkerClient.prototype.eraseIntMarker = function eraseIntMarker (intM
  */
 
 var SceneNode = /*@__PURE__*/(function (superclass) {
-	console.warn("PASSAGE SCENENODE CLASS")
   function SceneNode(options) {
     superclass.call(this);
     options = options || {};
@@ -56878,7 +56877,6 @@ var Point = /*@__PURE__*/(function (superclass) {
   };
   Point.prototype.subscribe = function subscribe (){
     this.unsubscribe();
-	console.warn("PASSAGE POINT SUBSCRIBE")
     // subscribe to the topic
     this.rosTopic = new ROSLIB.Topic({
         ros : this.ros,
@@ -56889,7 +56887,6 @@ var Point = /*@__PURE__*/(function (superclass) {
     this.rosTopic.subscribe(this.processMessage.bind(this));
   };
   Point.prototype.processMessage = function processMessage (message){
-	console.warn("PASSAGE POINT MSG")
     if(this.sn!==null){
         this.sn.unsubscribeTf();
         this.rootObject.remove(this.sn);
@@ -57227,7 +57224,6 @@ var PoseWithCovariance = /*@__PURE__*/(function (superclass) {
  */
 
 var Points = /*@__PURE__*/(function (superclass) {
-	console.warn("PASSAGE POINT CLASS")
   function Points(options) {
     superclass.call(this);
     options = options || {};
@@ -57518,7 +57514,6 @@ for(var i=0;i<64;i++){decode64.e[decode64.S.charAt(i)]=i;}
 
 
 var PointCloud2 = /*@__PURE__*/(function (superclass) {
-	console.warn("PASSAGE POINTCLOUD CLASS")
   function PointCloud2(options) {
     superclass.call(this);
     options = options || {};
@@ -57544,7 +57539,6 @@ var PointCloud2 = /*@__PURE__*/(function (superclass) {
   };
   PointCloud2.prototype.subscribe = function subscribe (){
     this.unsubscribe();
-	console.warn("PASSAGE POINTCLOUD SUBSCRIBE", this.ros, this.topicName)
 
     // subscribe to the topic
     this.rosTopic = new ROSLIB.Topic({
@@ -57558,7 +57552,6 @@ var PointCloud2 = /*@__PURE__*/(function (superclass) {
     this.rosTopic.subscribe(this.processMessage.bind(this));
   };
   PointCloud2.prototype.processMessage = function processMessage (msg){
-	console.warn("PASSAGE POINTCLOUD MSG", msg)
 	/*
     if(!this.points.setup(msg.header.frame_id, msg.point_step, msg.fields)) {
         return;
@@ -57600,7 +57593,6 @@ var PointCloud2 = /*@__PURE__*/(function (superclass) {
     this.points.update(n);
   };
   
-	console.warn("PASSAGE POINTCLOUD RETURN CLASS")
   return PointCloud2;
 }(THREE.Object3D));
 
