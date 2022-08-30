@@ -57552,10 +57552,10 @@ var PointCloud2 = /*@__PURE__*/(function (superclass) {
     this.rosTopic.subscribe(this.processMessage.bind(this));
   };
   PointCloud2.prototype.processMessage = function processMessage (msg){
-	/*
+	
     if(!this.points.setup(msg.header.frame_id, msg.point_step, msg.fields)) {
         return;
-    }*/
+	}
 
     var n, pointRatio = this.points.pointRatio;
     var bufSz = this.max_pts * msg.point_step;
