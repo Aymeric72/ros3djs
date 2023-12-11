@@ -58674,7 +58674,7 @@ var Viewer = function Viewer(options) {
   // create the canvas to render to
   this.renderer = new THREE.WebGLRenderer({
     antialias : antialias,
-    alpha: true
+    // alpha: true 
   });
   this.renderer.setClearColor(parseInt(background.replace('#', '0x'), 16), alpha);
   this.renderer.sortObjects = false;
